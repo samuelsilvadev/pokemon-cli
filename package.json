@@ -1,0 +1,18 @@
+{
+	"name": "pokemon-cli",
+	"version": "1.0.0",
+	"description": "Simple cli to search for a pokemon by its number.",
+	"main": "index.js",
+	"scripts": {
+		"test": "npm test"
+	},
+	"keywords": [
+		"Pokemon",
+		"NodeJs",
+		"CLI",
+		"Pokemon",
+		"Cli"
+	],
+	"author": "Samuel Silva",
+	"license": "MIT"
+}
