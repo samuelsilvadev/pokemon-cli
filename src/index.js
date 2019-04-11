@@ -1,5 +1,11 @@
+#!/usr/bin/env node
+
 const chalk = require('chalk');
 const pokemonService = require('./pokemon-service');
+
+const args = process.argv;
+const pokemonArgument = args.slice(2)[0];
+const pokemonNumber = parseInt(pokemonArgument, 10);
 
 function _findPokemonByNumber(number) {
 	return function(pokemons) {
@@ -21,5 +27,5 @@ function _handleError(err) {
 
 pokemonService
 	.fetchAllPokemons()
-	.then(_findPokemonByNumber(25))
+	.then(_findPokemonByNumber(pokemonNumber))
 	.catch(_handleError);
