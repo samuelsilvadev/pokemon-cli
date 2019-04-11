@@ -13,7 +13,9 @@ function _findPokemonByNumber(number) {
 			pokemon => pokemon.entry_number === number
 		);
 
-		const log = chalk.green(`Name: ${pokemon.pokemon_species.name}`);
+		const log = pokemon
+			? chalk.green(`Name: ${pokemon.pokemon_species.name}`)
+			: chalk.red(`Number ${number} not found at pokemon list`);
 
 		console.log(log);
 	};
