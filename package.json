@@ -14,5 +14,8 @@
 		"Cli"
 	],
 	"author": "Samuel Silva",
-	"license": "MIT"
+	"license": "MIT",
+	"dependencies": {
+		"chalk": "^2.4.2"
+	}
 }
