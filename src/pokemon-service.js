@@ -14,7 +14,7 @@ function fetchAllPokemons() {
 				});
 
 				response.on('end', () => {
-					pokemonsCache = body = JSON.parse(body);
+					body = JSON.parse(body);
 
 					resolve(body.pokemon_entries);
 				});
