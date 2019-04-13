@@ -41,5 +41,4 @@ describe('Pokemon service Module', () => {
 			}).catch(() => { });
 		});
 	});
-
 });

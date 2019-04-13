@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk');
+const termImg = require('term-img');
+
 const { findPokemonByNumber, getError } = require('./utils');
 const pokemonService = require('./pokemon-service');
 
@@ -15,7 +17,7 @@ function _handleSuccess(pokemons) {
 		? chalk.green(`Name: ${pokemon.pokemon_species.name}`)
 		: chalk.red(`Number ${number} not found at pokemon list`);
 
-	console.log(log);
+	return log;
 }
 
 function _handleError(err) {
@@ -24,7 +26,17 @@ function _handleError(err) {
 	console.log(error);
 }
 
-pokemonService
-	.fetchAllPokemons()
-	.then(_handleSuccess)
+Promise.all([pokemonService.fetchAllPokemons(), pokemonService.getPokemonImage(pokemonNumber)])
+	.then((values) => {
+		const [pokemons, image] = values;
+
+		const pokemonName = _handleSuccess(pokemons);
+		const pokemonPicture = termImg.string(image, {
+			width: '10%',
+			height: '10%',
+		});
+
+		console.log(pokemonName);
+		console.log(pokemonPicture);
+	})
 	.catch(_handleError);
