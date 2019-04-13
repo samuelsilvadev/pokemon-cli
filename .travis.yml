@@ -1,0 +1,14 @@
+env:
+    - VERBOSE=true
+    - DEFAULT_SUBFOLDER=en-US
+
+language: node_js
+
+node_js:
+    - '10.15.0'
+
+before_script:
+    - npm i
+
+script:
+    - npm test
