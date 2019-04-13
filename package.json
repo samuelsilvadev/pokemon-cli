@@ -1,6 +1,6 @@
 {
 	"name": "who-is-pokemon",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "Simple cli to search for a pokemon by its number.",
 	"main": "index.js",
 	"scripts": {
