@@ -2,6 +2,7 @@
 
 const chalk = require('chalk');
 const termImg = require('term-img');
+const cfonts = require('cfonts');
 
 const { findPokemonByNumber, getError } = require('./utils');
 const pokemonService = require('./pokemon-service');
@@ -14,7 +15,7 @@ function _handleSuccess(pokemons) {
 	const pokemon = findPokemonByNumber(pokemonNumber)(pokemons);
 
 	const log = pokemon
-		? chalk.green(`Name: ${pokemon.pokemon_species.name}`)
+		? pokemon.pokemon_species.name
 		: chalk.red(`Number ${number} not found at pokemon list`);
 
 	return log;
@@ -32,11 +33,28 @@ Promise.all([pokemonService.fetchAllPokemons(), pokemonService.getPokemonImage(p
 
 		const pokemonName = _handleSuccess(pokemons);
 		const pokemonPicture = termImg.string(image, {
-			width: '10%',
-			height: '10%',
+			width: '15%',
+			height: '15%',
 		});
 
-		console.log(pokemonName);
-		console.log(pokemonPicture);
+		const columns = process.stdout.columns;
+		const tenPercent = columns / 15;
+		const greenColumns = chalk.green('.'.repeat(columns));
+
+		console.log(greenColumns);
+
+		cfonts.say(pokemonName, {
+			font: 'block',
+			align: 'center',
+			colors: ['greenBright'],
+			background: 'transparent',
+			letterSpacing: 1.1,
+			lineHeight: 1,
+			space: true,
+			maxLength: '0',
+		});
+
+		console.log(`${' '.repeat((columns / 2) - (tenPercent))}${pokemonPicture}`);
+		console.log(greenColumns);
 	})
 	.catch(_handleError);
